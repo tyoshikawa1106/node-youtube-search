@@ -1,0 +1,44 @@
+<header class="site-masthead slds-grid slds-page-header slds-theme--inverse">
+  <div class="slds-media slds-media--center slds-media--responsive">
+    <span class="slds-media__figure slds-avatar--medium">
+      <img src="/vendor/SLDS092/assets/images/header-components.svg" alt="">
+    </span>
+  </div>
+  <div class="slds-media__body slds-p-top--x-small">
+    <h1 class="slds-text-heading--large">Youtube Search</h1>
+  </div>
+</header>
+<div class="slds-p-around--medium">
+  <div class="slds-card slds-theme--default slds-p-around--medium">
+    <form ng-submit="doSearch()" name="myForm">
+      <div class="slds-form-element slds-m-bottom--small">
+        <input type="text" ng-model="query" class='slds-input' placeholder="Please Keyword.." required>
+      </div>
+      <button class='slds-button slds-button--brand slds-button--small' ng-disabled="myForm.$invalid">検索</button>
+    </form>
+  </div>
+
+  <div class="slds-p-top--x-small">
+    <ul ng-show="results.length" class="slds-list--vertical slds-has-dividers" style="list-style:none;padding: 0;">
+      <li ng-repeat="result in results" class="slds-list__item">
+        <div class="slds-media slds-tile">
+          <div class="slds-media__figure">
+            <img src="{{result.snippet.thumbnails.medium.url}}" class="videoImg">
+          </div>
+          <div class="slds-media__body">
+            <p class="slds-tile__title slds-truncate">
+              <a href="https://www.youtube.com/watch?v={{result.id.videoId}}" target="_blank">{{result.snippet.title}}</a>
+            </p>
+            <div class="slds-tile__detail slds-text-body--small">
+              <ul class="slds-tile__detail slds-list--horizontal slds-has-dividers slds-text-body--small">
+                <li class="slds-truncate slds-list__item">チャンネル : {{result.snippet.channelTitle}}</li>
+                <li class="slds-truncate slds-list__item">公開日 : {{result.snippet.publishedAt | date}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <p ng-hide="results.length">※検索条件を指定してください</p>
+</div>
