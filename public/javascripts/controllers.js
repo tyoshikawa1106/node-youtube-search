@@ -1,5 +1,4 @@
 angular.module("Controllers", []).controller("MainCtrl", ["$scope", "$http", function($scope, $http){
-  console.log('OK');
   $scope.doSearch = function() {
     var url = 'https://www.googleapis.com/youtube/v3/search?'
       + [
